@@ -1,0 +1,42 @@
+﻿@model HomeWork.Models.Student 
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "_AdminLayout";
+}
+
+<h1>Edit student</h1>
+<hr />
+
+<form asp-action="EditStudent">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="StudentId" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label"></label>
+        <input asp-for="Surname" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AverageGrade" class="control-label"></label>
+        <input asp-for="AverageGrade" class="form-control" />
+        <span asp-validation-for="AverageGrade" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FacultyId" class="control-label"></label>
+        <input asp-for="FacultyId" class="form-control" />
+        <span asp-validation-for="FacultyId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

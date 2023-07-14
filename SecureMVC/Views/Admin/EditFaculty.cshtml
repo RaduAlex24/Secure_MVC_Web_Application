@@ -1,0 +1,28 @@
+﻿@model HomeWork.Models.Faculty 
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "_AdminLayout";
+}
+
+<h1>Edit faculty</h1>
+<hr />
+
+<form asp-action="EditFaculty">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="FacultyId" />
+    <div class="form-group">
+        <label asp-for="FacultyName" class="control-label"></label>
+        <input asp-for="FacultyName" class="form-control" />
+        <span asp-validation-for="FacultyName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Specialization" class="control-label"></label>
+        <input asp-for="Specialization" class="form-control" />
+        <span asp-validation-for="Specialization" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="SaveFaculty" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</form>

@@ -1,0 +1,95 @@
+﻿@model Students_Faculties_ViewModel
+
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Faculties</h1>
+@if (User.IsInRole("FacultiesAdmin")) {
+    <a asp-action="CreateFaculty" class="btn btn-primary mb-3">Add Faculty</a>
+}
+
+<table class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Faculty faculty in Model.Faculties) {
+            <tr>
+                <td>@faculty.FacultyId</td>
+                <td>@faculty.FacultyName</td>
+                <td>@faculty.Specialization</td>
+
+                @if (User.IsInRole("FacultiesAdmin")) {
+
+                    <td>
+                        <a asp-action="EditFaculty" class="btn btn-warning" asp-route-facultyId="@faculty.FacultyId">Edit</a>
+
+
+
+                        <form asp-action="DeleteFaculty" method="post" style="display:inline">
+
+                            <input type="hidden" name="FacultyId" value="@faculty.FacultyId">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+
+                        </form>
+
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h1>Students</h1>
+
+@if (User.IsInRole("StudentsAdmin")) {
+    <a asp-action="CreateStudent" class="btn btn-primary mb-3">Add Student</a>
+}
+
+<table class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Average Grade</th>
+            <th>Faculty Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Student student in Model.Students) {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.Name</td>
+                <td>@student.Surname</td>
+                <td>@student.AverageGrade.ToString()</td>
+                <td>@student.FacultyId</td>
+
+                @if (User.IsInRole("StudentsAdmin")) {
+
+                    <td>
+                        <a asp-action="EditStudent" class="btn btn-warning" asp-route-studentId="@student.StudentId">Edit</a>
+
+
+                    <form asp-action="DeleteStudent" method="post" style="display:inline">
+
+                        <input type="hidden" name="StudentId" value="@student.StudentId">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                    </form>
+
+                </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
